@@ -1,8 +1,11 @@
 package com.utils;
 
+
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -36,10 +39,10 @@ public class CommonMethods {
 	public static void setUp(String browser, String url){
 		
 		if(browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\hvanl\\eclipse-workspace\\SeleniumReviewBatch7\\drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\eclipse-workspace\\SyntaxSelenimReviewBatch7\\drivers\\chromedriver.exe");
 			driver=new ChromeDriver();
 		}else if(browser.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", "C:\\Users\\hvanl\\eclipse-workspace\\SeleniumReviewBatch7\\drivers\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "C:\\Users\\User\\eclipse-workspace\\SyntaxSelenimReviewBatch7\\drivers\\geckodriver.exe");
 			driver=new FirefoxDriver();
 		}else {
 			System.err.println("Browser not supported");
@@ -126,11 +129,11 @@ public class CommonMethods {
 	public static void takeScreenShot(String filePath, String fileName) {
 		TakesScreenshot ts=(TakesScreenshot)driver;
 		File screen=ts.getScreenshotAs(OutputType.FILE);
-//		try {
-//			//FileUtils.copyFile(screen, new File(filePath+"/"+fileName));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			FileUtils.copyFile(screen, new File(filePath+"/"+fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
